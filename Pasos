@@ -1,0 +1,9 @@
+Instalar Python
+Fijar las variables de entorno, seleccionar la carpeta en donde se encuentra el interprete
+Reiniciar el equipo
+Al abrir VSCode seleccionar el interprete => "Ctrl + Shift + P  => Python: Select Interpreter"
+Bajar get-pip.py 
+installar pip => "py get-pip.py"
+Fijar las variables de entorno, seleccionar la carpeta donde se encuentran los Scripts
+Reiniciar el equipo
+
