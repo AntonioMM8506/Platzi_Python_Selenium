@@ -4,6 +4,10 @@ Reiniciar el equipo
 Al abrir VSCode seleccionar el interprete => "Ctrl + Shift + P  => Python: Select Interpreter"
 Bajar get-pip.py 
 installar pip => "py get-pip.py"
+* pip selenium
+* pip pyunitreport
+* pip python-dotenv
+* pip install ddt
 Fijar las variables de entorno, seleccionar la carpeta donde se encuentran los Scripts
 Reiniciar el equipo
 
