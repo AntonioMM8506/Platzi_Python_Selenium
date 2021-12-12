@@ -1,4 +1,11 @@
-import unittest
+#DDT with CSV file
+#Import modules to read env files
+import os
+from dotenv import load_dotenv
+load_dotenv()
+#Import modules for testing
+import unittest 
+import csv
 from selenium import webdriver
 from ddt import ddt, data, unpack
 #from selenium.webdriver.common.by import By 
@@ -6,25 +13,32 @@ from ddt import ddt, data, unpack
 #from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
-#DDT
+
+def get_data(file_name):
+    rows = []
+    data_file = open(file_name, "r")
+    reader = csv.reader(data_file)
+    next(reader, None)
+
+    for row in reader:
+        rows.append(row)
+    return rows
 
 #decorator
 @ddt
-class SearchDDT(unittest.TestCase):
+class SearchCCVDDT(unittest.TestCase):
 
     #Initialization
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path=r'C:/Users/ASUS/Documents/VS Code/JavaScript/Platzi/Selenium/chromedriver.exe')
+        self.driver = webdriver.Chrome(os.getenv('CHROMEDRIVER_PATH'))
         driver= self.driver
         driver.implicitly_wait(30)
         driver.maximize_window()
         driver.get("http://demo-store.seleniumacademy.com")
+    #End of setUp
 
-    #With this, it can send the data to the following function automatically 
-    # For example, search_value = dress, expected_count = 6     
-    @data(("dress",6),("music",5))
+    @data(*get_data("testdata.csv"))
     @unpack
-
     def test_search_ddt(self, search_value, expected_count):
         driver = self.driver
 
@@ -36,19 +50,22 @@ class SearchDDT(unittest.TestCase):
 
         #Finds the products by their xpath, this is a elementS_xpath
         products = driver.find_elements_by_xpath('//h2[@class="product-name"]/a')
-        print(f"Found {len(products)} products")
 
-        #The previous variable returns a list of the found elements, with this one can print it
-        for product in products:
-            print(product.text)
-        
-        #If the obtained values are the expected ones. 
-        self.assertEqual(expected_count, len(products))
+        expected_count = int(expected_count)
+
+        if expected_count > 0:
+            self.assertEqual(expected_count, len(products))
+        else:
+            message = driver.find_element_by_class_name("note-smg")
+            self.assertEqual("Your search returns no results", message)
+
+        print(f"Found {len(products)} products")
+    #End of test_search_ddt
 
     #Close
     def tearDown(self):
         self.driver.close()
-
+    #End of tearDown
 
 #MAIN
 if __name__== '__main__':

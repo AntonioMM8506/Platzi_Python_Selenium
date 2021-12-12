@@ -1,3 +1,9 @@
+#Sortable data tables
+#Import modules to read env files
+import os
+from dotenv import load_dotenv
+load_dotenv()
+#Import modules for testing
 import unittest
 from selenium import webdriver
 #from selenium.webdriver.common.by import By 
@@ -5,17 +11,16 @@ from selenium import webdriver
 #from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
-#Sorting tables
-#Sortable Data Tables
 
 class Typos(unittest.TestCase):
 
     #Initialization
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path=r'C:/Users/ASUS/Documents/VS Code/JavaScript/Platzi/Selenium/chromedriver.exe')
+        self.driver = webdriver.Chrome(os.getenv('CHROMEDRIVER_PATH'))
         driver= self.driver
         driver.get("http://the-internet.herokuapp.com/")
         driver.find_element_by_link_text("Sortable Data Tables").click()
+    #End of setUp
 
     #Test Cases
     #This case checks if the given text is equal to the one corresponding to the web page. 
@@ -36,11 +41,12 @@ class Typos(unittest.TestCase):
                 table_data[i].append(row_data.text)
 
         print(table_data)
+    #End of test_sort_tables
 
     #Close
     def tearDown(self):
         self.driver.close()
-
+    #End of tearDown
 
 #MAIN
 if __name__== '__main__':

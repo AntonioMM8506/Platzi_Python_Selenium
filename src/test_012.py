@@ -1,20 +1,25 @@
+#Dynamic and Disappearing Elements
+#Import modules to read env files
+import os
+from dotenv import load_dotenv
+load_dotenv()
+#Import modules for testing
 import unittest
 from selenium import webdriver
 from time import sleep
-#Dynamic Elements
-#Disappearing Elements
+
 
 class DynamicElements(unittest.TestCase):
 
     #Initialization
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path=r'C:/Users/ASUS/Documents/VS Code/JavaScript/Platzi/Selenium/chromedriver.exe')
+        self.driver = webdriver.Chrome(os.getenv('CHROMEDRIVER_PATH'))
         driver= self.driver
         driver.get("http://the-internet.herokuapp.com/")
         driver.find_element_by_link_text("Disappearing Elements").click()
+    #End of setUp
 
     #Test Cases
-    #
     def test_name_elements(self):
         driver = self.driver
 
@@ -39,11 +44,12 @@ class DynamicElements(unittest.TestCase):
                     driver.refresh()
             
             print(f"Finished in {tries} tries")
+    #End of test_name_elements
     
     #Close
     def tearDown(self):
         self.driver.close()
-
+    #End of tearDown
 
 #MAIN
 if __name__== '__main__':

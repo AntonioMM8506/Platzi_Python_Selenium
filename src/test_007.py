@@ -1,52 +1,60 @@
+#Handling dropdown menues and lists
+#Import modules to read env files
+import os
+from dotenv import load_dotenv
+load_dotenv()
+#Import modules for testing
 import unittest
 from selenium import webdriver
 from pyunitreport import HTMLTestRunner
-#submodulo  para usar el dropdown
+#submodule for handling drop-down menues
 from selenium.webdriver.support.ui import Select
 
-#Manejo de Dropdown y listas
 
 class LanguageOptions(unittest.TestCase):
 	def setUp(self):
-		self.driver = webdriver.Chrome(executable_path=r'C:/Users/ASUS/Documents/VS Code/JavaScript/Platzi/Selenium/chromedriver.exe')
+		self.driver = webdriver.Chrome(os.getenv('CHROMEDRIVER_PATH'))
 		driver = self.driver
 		driver.implicitly_wait(30)
 		driver.maximize_window()
 		driver.get("http://demo-store.seleniumacademy.com/")
+	#End of setUp
 	
 	def test_select_language(self):
-		#el orden respeta como aparecen en la página
 		exposed_options = ['English', 'French', 'German']
-		#para almacenar las opciones que elijamos
+		#to store the options to select
 		active_options = []
-		#para acceder a las opciones del dropdown
+		#to access to the options of the dropdown menu
 		select_language= Select(self.driver.find_element_by_id('select-language'))
-		#para comprobar que si esté la cantidad de  opciones correcta
-		#'options' permite ingresar directamente a las opciones del dropdown
+		#to validate that the quantity of options are the same as the expected
+		#'options' allows to access directly to the options of the dropdown menu
 		self.assertEqual(3, len(select_language.options))
 
 		for option in select_language.options:
 			active_options.append(option.text)
 		
-		#verifico que la lista de opciones disponibles y activas sean indénticas
+		#Verifies that the list of available options and the active ones are the same
 		self.assertListEqual(exposed_options,active_options)
 
-		#vamos a verificar la palabra "English" sea la primera opción seleccionada del dropdown
+		#Verifies that the first option is "English" in the dropdown menu
 		self.assertEqual('English', select_language.first_selected_option.text)
 
-		#seleccionamos "German" por el texto visible
+		#It selects the option with the text "German"
 		select_language.select_by_visible_text('German')
 
-		#verificamos que el sitio cambio a Alemán
-		#preguntamos a selenium si la url del sitio contiene esas palabras
+		#Verifies if the page is translated to German
+		#Verifies that the url contains the words
 		self.assertTrue('store=german' in self.driver.current_url)
 
 		select_language= Select(self.driver.find_element_by_id('select-language'))
 		select_language.select_by_index(0)
+	#End of test_select_language
 
 	def tearDown(self):
 		self.driver.implicitly_wait(3)
 		self.driver.close()
+	#End of tearDown
 
+#MAIN
 if __name__ == "__main__":
 	unittest.main(verbosity = 2)

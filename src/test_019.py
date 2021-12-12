@@ -1,21 +1,25 @@
+#Technical Test
+#Import modules to read env files
+import os
+from dotenv import load_dotenv
+load_dotenv()
+#Import modules for testing
 import unittest 
 from selenium import webdriver
 from time import sleep
 
-#Tehcnical Test
+
 class TestingMercadoLibre(unittest.TestCase):
 
     #Initialization
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path=r'C:/Users/ASUS/Documents/VS Code/JavaScript/Platzi/Selenium/chromedriver.exe')
+        self.driver = webdriver.Chrome(os.getenv('CHROMEDRIVER_PATH'))
         driver= self.driver
         #driver.implicitly_wait(30)
         driver.maximize_window()
         driver.get("https://www.mercadolibre.com")
-
-    #
-    #
-    #
+    #End of setUp
+    
     def test_search(self):
         driver = self.driver
         country = driver.find_element_by_id('CO')
@@ -56,12 +60,12 @@ class TestingMercadoLibre(unittest.TestCase):
             prices.append(article_price)
 
         print(articles, prices)
-
+    #End of test_search
 
     #Close
     def tearDown(self):
         self.driver.close()
-
+    #End of tearDown
 
 #MAIN
 if __name__== '__main__':

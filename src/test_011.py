@@ -1,16 +1,23 @@
+#Add and Remove elements on the website
+#Import modules to read env files
+import os
+from dotenv import load_dotenv
+load_dotenv()
+#Import modules for testing
 import unittest
 from selenium import webdriver
 from time import sleep
-#Add and remove elements on "The Internet" Website"
+
 
 class AddRemoveElements(unittest.TestCase):
 
     #Initialization
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path=r'C:/Users/ASUS/Documents/VS Code/JavaScript/Platzi/Selenium/chromedriver.exe')
+        self.driver = webdriver.Chrome(os.getenv('CHROMEDRIVER_PATH'))
         driver = self.driver
         driver.get("https://the-internet.herokuapp.com/")
         driver.find_element_by_link_text("Add/Remove Elements").click()
+    #End of setUp
 
     #Test cases
     def test_add_remove(self):
@@ -47,11 +54,13 @@ class AddRemoveElements(unittest.TestCase):
             print("There are 0 elements on the screen")
 
         sleep(3)
+    #End of test_add_remove
 
     #Close driver
     def tearDown(self):
         self.driver.close()
+    #End of tearDown
 
-#Main ---------------------------------------------------------------------    
+#MAIN
 if __name__ == "__main__":
 	unittest.main(verbosity = 2)
