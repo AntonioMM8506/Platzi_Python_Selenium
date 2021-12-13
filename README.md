@@ -11,14 +11,18 @@ Basic automated test cases using Python and Selenium.
 
     - Just in case you don't have it already installed or if you are experimenting difficulties. [Download it here](https://bootstrap.pypa.io/get-pip.py).
 ```
-py get-pip.py #In case you download it and save it on the root folder of the project
+ #In case you download it and save it on the root folder of the project
+py get-pip.py
 
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py # In case you don't want to save the file
+#In case you don't want to save the file
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py 
 
-py -m pip install --upgrade pip #In case your pip module needs an update
+#In case your pip module needs an update
+py -m pip install --upgrade pip 
 ```
 ```
 #Install all the other required modules
+
 pip install selenium
 pip install pyunitreport
 pip install python-dotenv
