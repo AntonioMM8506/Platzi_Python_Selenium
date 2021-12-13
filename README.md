@@ -1,4 +1,4 @@
-# Platzi_Python_Selenium
+# Python Selenium
 Basic automated test cases using Python and Selenium.
 
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" /> <img src="https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white" /> <img src="https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white" /> <img src="https://img.shields.io/badge/Google_chrome-4285F4?style=for-the-badge&logo=Google-chrome&logoColor=white" />
@@ -11,7 +11,7 @@ Basic automated test cases using Python and Selenium.
 
     - Just in case you don't have it already installed or if you are experimenting difficulties. [Download it here](https://bootstrap.pypa.io/get-pip.py).
 ```
- #In case you download it and save it on the root folder of the project
+#In case you download it and save it on the root folder of the project
 py get-pip.py
 
 #In case you don't want to save the file
@@ -29,7 +29,7 @@ pip install python-dotenv
 pip install ddt
 ```
 
-4. Creta an .env file in the root foler of the project and write you environmental variable with the path of the chromedriver.exe. Like this: 
+4. Create an .env file in the root foler of the project and write you environmental variable with the path of the chromedriver.exe. Like this: 
 
 ```
 CHROMEDRIVER_PATH=C:/Users/myPC/Python_Selenium/chromedriver.exe
@@ -41,5 +41,5 @@ CHROMEDRIVER_PATH=C:/Users/myPC/Python_Selenium/chromedriver.exe
 py src/test_001.py
 ```
 
-## Important Note
+### Important Note
 :warning: Some of the current methods could be deprecated, depending of the version of selenium you are running. :warning: 
