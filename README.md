@@ -4,7 +4,8 @@ Basic automated test cases using Python and Selenium.
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" /> <img src="https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white" /> <img src="https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white" /> <img src="https://img.shields.io/badge/Google_chrome-4285F4?style=for-the-badge&logo=Google-chrome&logoColor=white" />
 
 ## Steps:
-1. Checkout and download this repo.
+1. Fork and download this repo.
+
 2. Download chromdriver according to you current Chrome explorer version. [Download it here](https://chromedriver.chromium.org/).
 
 3. Install all the required python modules:
